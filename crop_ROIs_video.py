@@ -31,34 +31,34 @@ while True:
     for i in range(1, 13, 1):
         #Coluna A
         #cv.rectangle(image, (x1,y1), (x2,y2), (0,0,255), 2)
-        crop_A = image[y1:y2, x1:x2]
+        crop_A = cv.resize(image[y1:y2, x1:x2], (224, 224))
         cv.imwrite(f'crops/column_A_{image_count}.jpg', crop_A)
 
         #Coluna B
         #cv.rectangle(image, (x2,y1), (x2+length_parking_space,y2), (0,0,255), 2)
-        crop_B = image[y1:y2, x2:x2+length_parking_space]
+        crop_B = cv.resize(image[y1:y2, x2:x2+length_parking_space], (224, 224))
         cv.imwrite(f'crops/column_B_{image_count}.jpg', crop_B)
 
         if i != 9: #Posição 9 das colunas C e D não são vagas
             #Coluna C
             #cv.rectangle(image, (x1+distance_column_A_C,y1), (x2+distance_column_A_C,y2), (0,0,255), 2)
-            crop_C = image[y1:y2, x1+distance_column_A_C:x2+distance_column_A_C]
+            crop_C = cv.resize(image[y1:y2, x1+distance_column_A_C:x2+distance_column_A_C], (224, 224))
             cv.imwrite(f'crops/column_C_{image_count}.jpg', crop_C)
 
             #Coluna D
             #cv.rectangle(image, (x2+distance_column_A_C,y1), (x2+distance_column_A_C+length_parking_space,y2), (0,0,255), 2)
-            crop_D = image[y1:y2, x2+distance_column_A_C:x2+distance_column_A_C+length_parking_space]
+            crop_D = cv.resize(image[y1:y2, x2+distance_column_A_C:x2+distance_column_A_C+length_parking_space], (224, 224))
             cv.imwrite(f'crops/column_D_{image_count}.jpg', crop_D)
 
         #Coluna E
         #cv.rectangle(image, (x1+distance_column_A_E,y1), (x2+distance_column_A_E,y2), (0,0,255), 2)
-        crop_E = image[y1:y2, x1+distance_column_A_E:x2+distance_column_A_E]
+        crop_E = cv.resize(image[y1:y2, x1+distance_column_A_E:x2+distance_column_A_E], (224, 224))
         cv.imwrite(f'crops/column_E_{image_count}.jpg', crop_E)
         
         if i != 1: #Na coluna F, posição, não há uma vaga
             #Coluna F
             #cv.rectangle(image, (x2+distance_column_A_E+distance_column_E_F,y1), (x2+distance_column_A_E+length_parking_space+distance_column_E_F,y2), (0,0,255), 2)
-            crop_F = image[y1:y2, x2+distance_column_A_E+distance_column_E_F:x2+distance_column_A_E+length_parking_space+distance_column_E_F]
+            crop_F = cv.resize(image[y1:y2, x2+distance_column_A_E+distance_column_E_F:x2+distance_column_A_E+length_parking_space+distance_column_E_F], (224, 224))
             cv.imwrite(f'crops/column_F_{image_count}.jpg', crop_F)
 
         
