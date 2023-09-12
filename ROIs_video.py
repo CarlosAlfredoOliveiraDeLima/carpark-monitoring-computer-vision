@@ -15,70 +15,44 @@ while True:
         video.set(cv.CAP_PROP_POS_FRAMES, 0)
         continue
     
-    x1 = 46 #+4
-    x2 = 156 #+6
+    x1 = 46
+    x2 = 156
     y1 = 100
     y2 = 147
+    length_parking_space = 110
+    distance_column_A_C = 348
+    distance_column_A_E = 696
+    distance_column_E_F = 40
+    put_text_x1 = -33
+    put_text_x2 = 113
+    put_text_y = 15
     for i in range(1, 13, 1):
+        #Colunas A e B
         cv.rectangle(image, (x1,y1), (x2,y2), (0,0,255), 2)
-        cv.putText(image, f"a{i}", (x1-33,y1+15), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
-        cv.rectangle(image, (x2,y1), (x2+110,y2), (0,0,255), 2)
-        cv.putText(image, f"b{i}", (x2+113,y1+15), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
-
+        cv.rectangle(image, (x2,y1), (x2+length_parking_space,y2), (0,0,255), 2)
+        #Colunas C e D
         if i != 9:
-            cv.rectangle(image, (x1+348,y1), (x2+348,y2), (0,0,255), 2)
-            cv.putText(image, f"c{i}", (x1+315,y1+15), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
-            cv.rectangle(image, (x2+348,y1), (x2+458,y2), (0,0,255), 2)
-            cv.putText(image, f"d{i}", (x2+461,y1+15), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
-
-        cv.rectangle(image, (x1+696,y1), (x2+696,y2), (0,0,255), 2)
-        cv.putText(image, f"e{i}", (x1+663,y1+15), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
+            cv.rectangle(image, (x1+distance_column_A_C,y1), (x2+distance_column_A_C,y2), (0,0,255), 2)
+            cv.rectangle(image, (x2+distance_column_A_C,y1), (x2+distance_column_A_C+length_parking_space,y2), (0,0,255), 2)
+        #Colunas E e F
+        cv.rectangle(image, (x1+distance_column_A_E,y1), (x2+distance_column_A_E,y2), (0,0,255), 2)
         if i != 1:
-            cv.rectangle(image, (x2+736,y1), (x2+846,y2), (0,0,255), 2)
-            cv.putText(image, f"f{i}", (x2+849,y1+15), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
+            cv.rectangle(image, (x2+distance_column_A_E+distance_column_E_F,y1), (x2+distance_column_A_E+length_parking_space+distance_column_E_F,y2), (0,0,255), 2)
+            
         
+        #Rotinas de rotulação de cada coluna do estacionamento
+        cv.putText(image, f"a{i}", (x1+put_text_x1,y1+put_text_y), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
+        cv.putText(image, f"b{i}", (x2+put_text_x2,y1+put_text_y), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
+        if i != 9:
+            cv.putText(image, f"c{i}", (x1+distance_column_A_C+put_text_x1,y1+put_text_y), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
+            cv.putText(image, f"d{i}", (x2+distance_column_A_C+put_text_x2,y1+put_text_y), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
+        cv.putText(image, f"e{i}", (x1+distance_column_A_E+put_text_x1,y1+put_text_y), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
+        if i != 1:
+            cv.putText(image, f"f{i}", (x2+distance_column_A_E+put_text_x2+distance_column_E_F,y1+put_text_y), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
+
+        #Atualização dos valores das ordenadas das vagas
         y1 += 47
         y2 += 47
-
-
-    # x1 = 390
-    # x2 = 498
-    # y1 = 96
-    # y2 = 143
-    # for i in range(1, 13, 1):
-    #     if i == 9:
-    #         y1 += 47
-    #         y2 += 47
-    #         continue
-    #     cv.rectangle(image, (x1,y1), (x2,y2), (0,0,255), 2)
-    #     cv.putText(image, f"c{i}", (x1-33,y1+15), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
-    #     cv.rectangle(image, (x1+108,y1), (x2+108,y2), (0,0,255), 2)
-    #     cv.putText(image, f"d{i}", (x2+113,y1+15), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
-    #     y1 += 47
-    #     y2 += 47
-
-
-    # x1 = 738
-    # x2 = 846
-    # y1 = 93
-    # y2 = 140
-    # for i in range(1, 13, 1):
-
-    #     if i == 1:
-    #         cv.rectangle(image, (x1,y1), (x2,y2), (0,0,255), 2)
-    #         cv.putText(image, f"e{i}", (x1-33,y1+15), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
-    #         y1 += 47
-    #         y2 += 47
-    #         continue
-
-
-        # cv.rectangle(image, (x1,y1), (x2,y2), (0,0,255), 2)
-        # cv.putText(image, f"e{i}", (x1-33,y1+15), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
-        # cv.rectangle(image, (x1+150,y1), (x2+150,y2), (0,0,255), 2)
-        # cv.putText(image, f"f{i}", (x2+154,y1+15), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
-        # y1 += 47
-        # y2 += 47
-
 
     cv.imshow('Video', image)
 
