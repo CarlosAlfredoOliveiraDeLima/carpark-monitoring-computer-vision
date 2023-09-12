@@ -27,15 +27,15 @@ while True:
 
         if i != 9:
             cv.rectangle(image, (x1+348,y1), (x2+348,y2), (0,0,255), 2)
-            cv.putText(image, f"c{i}", (x1-33,y1+15), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
+            cv.putText(image, f"c{i}", (x1+315,y1+15), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
             cv.rectangle(image, (x2+348,y1), (x2+458,y2), (0,0,255), 2)
-            cv.putText(image, f"d{i}", (x2+113,y1+15), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
+            cv.putText(image, f"d{i}", (x2+461,y1+15), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
 
         cv.rectangle(image, (x1+696,y1), (x2+696,y2), (0,0,255), 2)
-        cv.putText(image, f"c{i}", (x1-33,y1+15), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
+        cv.putText(image, f"e{i}", (x1+663,y1+15), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
         if i != 1:
             cv.rectangle(image, (x2+736,y1), (x2+846,y2), (0,0,255), 2)
-            cv.putText(image, f"d{i}", (x2+113,y1+15), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
+            cv.putText(image, f"f{i}", (x2+849,y1+15), cv.FONT_HERSHEY_SIMPLEX, 0.5, (51, 255, 255), 1)
         
         y1 += 47
         y2 += 47
