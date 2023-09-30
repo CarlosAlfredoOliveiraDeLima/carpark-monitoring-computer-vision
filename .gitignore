@@ -6,3 +6,4 @@ img_tests
 teste_imagens
 trash
 __pycache__
+.pytest_cache
