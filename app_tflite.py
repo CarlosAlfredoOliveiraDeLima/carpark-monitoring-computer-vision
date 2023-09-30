@@ -21,7 +21,15 @@ if not video.isOpened():
     print('Erro ao carregar o vídeo.')
     exit()
 
-frame_pular = 6
+# Configuração do VideoWriter
+fourcc = cv.VideoWriter_fourcc(*'MJPG')  # Código do codec MJPEG
+fps = 2  # Taxa de quadros por segundo
+frameSize = (1100, 720)  # Tamanho dos quadros
+isColor = True  # Vídeo colorido
+# Crie o objeto VideoWriter
+out = cv.VideoWriter('output_video.avi', fourcc, fps, frameSize, isColor)
+
+frame_pular = 4
 frame_count = 0
 while True:
     red_count = 0
@@ -170,7 +178,7 @@ while True:
             y2 += 47
         
         cv.imshow('Video', image)
-
+        out.write(image)
     #time.sleep(0.02)
     frame_count += 1
 
