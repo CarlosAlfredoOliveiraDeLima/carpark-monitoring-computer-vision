@@ -5,3 +5,4 @@ crops/*
 img_tests
 teste_imagens
 trash
+__pycache__
