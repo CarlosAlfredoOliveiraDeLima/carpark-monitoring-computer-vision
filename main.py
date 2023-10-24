@@ -1,4 +1,4 @@
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response, jsonify
 import cv2 as cv
 from time import sleep
 import json
@@ -18,6 +18,7 @@ with open('ROIs_definition.json', 'r') as ROIs_json:
 def gen_frames():  # generate frame by frame from camera
     frame_pular = 4
     frame_count = 0
+    
     while True:
         red_count = 0
         green_count = 0
@@ -108,8 +109,14 @@ def gen_frames():  # generate frame by frame from camera
                     y1 += 47
                     y2 += 47
                 
-                ret, buffer = cv.imencode('.jpg', image)
+                #Atualiza as variáveis green_count e red_count na rota get_counts
+                app.config['green_count'] = green_count
+                app.config['red_count'] = red_count
+                
+                ret, buffer = cv.imencode('.jpg', image)                
                 frame = buffer.tobytes()
+                
+                
                 yield (b'--frame\r\n'
                     b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result
 
@@ -120,12 +127,17 @@ def video_feed():
     #Video streaming route. Put this in the src attribute of an img tag
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
+@app.route('/get_counts')
+def get_counts():
+    green_count = app.config['green_count']
+    red_count = app.config['red_count']
+
+    return jsonify({'green_count': green_count, 'red_count': red_count})
 
 @app.route('/')
 def index():
-    """Video streaming home page."""
+    """Video streaming home page."""    
     return render_template('index.html')
-
 
 if __name__ == '__main__':
     app.run(debug=True)

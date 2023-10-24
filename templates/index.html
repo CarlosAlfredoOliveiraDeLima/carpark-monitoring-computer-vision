@@ -1,24 +1,83 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <title>Live Streaming Demonstration</title>
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8  offset-lg-2">
+    <header class="d-flex justify-content-between align-items-center">
+        <a href="https://univesp.br" target="_blank">
+            <img src="{{ url_for('static', filename='img/logo-univesp.png') }}" alt="Logotipo" class="logo">
+        </a>
+        <div class="nav-container">                    
+            <a href="#">GERENCIAMENTO DE VAGAS</a>
+            <a href="#">SOBRE</a>
+        </div>            
+    </header>    
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8  offset-lg-2">
             <h3 class="mt-5">Live Streaming</h3>
             <img src="{{ url_for('video_feed') }}" width="640" height="480">
-        </div>
+        </div>         
     </div>
+
+    <div class="mb-5"></div> 
+
+    <div class="col-7 offset-lg-2">        
+        <button type="button" class="btn btn-primary btn-block d-flex justify-content-between mb-3">
+            <span>TOTAL DE VAGAS</span>
+            <span id="total_count">69</span>
+        </button>
+    </div>
+
+    <div class="col-7 offset-lg-2">
+        <button type="button" class="btn btn-danger btn-block d-flex justify-content-between mb-3">
+            <span>VAGAS OCUPADAS</span>
+            <span id="red_count">0</span>
+        </button>
+    </div>
+
+    <div class="col-7 offset-lg-2">
+        <button type="button" class="btn btn-success btn-block d-flex justify-content-between mb-3">
+            <span>VAGAS LIVRES</span>
+            <span id="green_count">0</span>
+        </button>
+    </div>
+
+    <div class="mb-5"></div>
+
 </div>
+
+<footer>            
+    <p>Projeto disponível em: https://github.com/tcc_univesp/CarParkDetection </p>
+</footer>
+<script>
+    function updateCounts() {
+        // Realiza uma solicitação AJAX para obter os valores atualizados das vagas
+        fetch('/get_counts')
+            .then(response => response.json())
+            .then(data => {
+                const greenCount = data.green_count;
+                const redCount = data.red_count;
+                const totalCount = greenCount + redCount;
+
+                document.getElementById('red_count').textContent = data.red_count;
+                document.getElementById('green_count').textContent = data.green_count;
+                document.getElementById('total_count').textContent = totalCount;
+            });
+    }
+    // Atualiza as contagens a cada segundo (1000 ms)
+    setInterval(updateCounts, 1000);
+</script>
+
 </body>
 </html>

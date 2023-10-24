@@ -1,0 +1,50 @@
+body{
+    background-color: black;
+}
+
+header {
+    background-color: black; /* Cor de fundo para o cabeçalho, substitua pela sua cor desejada */
+    padding: 10px 0; /* Espaçamento interno no cabeçalho */
+    display: flex;
+    justify-content: space-between; /* Distribui o conteúdo para os cantos */
+    align-items: center; /* Alinha verticalmente o conteúdo ao centro */
+}
+
+
+.logo {
+    max-width: 100px; /* Defina o tamanho máximo do logotipo conforme desejado */
+    margin-left: 20px; /* Espaçamento à esquerda do logotipo */
+}
+
+/* Estilo para a navegação */
+.nav-container {
+    text-align: right; /* Alinha o texto à direita */
+    margin-right: 20px; /* Espaçamento à direita, ajuste conforme necessário */
+}
+
+/* Estilo para os links de navegação */
+.nav-container a {
+    text-decoration: none; /* Remove sublinhado dos links, se necessário */
+    color: #fff; /* Cor dos links, substitua pela sua cor desejada */
+    margin-left: 20px; /* Espaçamento entre os links, ajuste conforme desejado */
+}
+
+footer {
+    background-color: black; /* Cor de fundo preto */
+    color: white; /* Cor do texto branco */
+    text-align: center; /* Alinha o texto ao centro */
+    padding: 20px 0; /* Espaçamento interno no footer */
+    
+}
+footer p {
+    margin: 0; /* Remove margem padrão do parágrafo */
+    display: flex; /* Faz com que o texto e o link fiquem na mesma linha */
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+}
+/* Estilo para o link no texto */
+footer a {
+    margin: 0;
+    color: white; /* Cor do link branco */
+    text-decoration: none; /* Remove sublinhado do link, se necessário */
+    
+}
